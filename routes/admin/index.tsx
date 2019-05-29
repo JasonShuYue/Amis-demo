@@ -10,44 +10,73 @@ import { inject, observer } from 'mobx-react';
 import UserInfo from '../../components/UserInfo';
 import { mapTree } from 'amis/lib/utils/helper';
 import Dashboard from './Dashboard';
+import SystemMg from './SystemMg';
+import UserMg from './UserMg';
+import MyGroup from './MyGroup';
 import BasicForm from './form/Basic';
 import AdvancedForm from './form/Advanced';
 import Wizard from './form/Wizard';
+import CourseMgt from "./CourseMgt";
 
 const navigations = [
     {
-        label: '导航',
+        // label: '导航',
         children: [
+            // {
+            //     path: 'dashboard',
+            //     label: '我的小组',
+            //     icon: 'glyphicon glyphicon-signal',
+            //     component: Dashboard
+            // },
+            //
+            // {
+            //     label: '表单页面',
+            //     icon: 'glyphicon glyphicon-edit',
+            //     children: [
+            //         {
+            //             label: '常规表单',
+            //             path: 'form/basic',
+            //             component: BasicForm
+            //         },
+            //
+            //         {
+            //             label: '复杂表单',
+            //             path: 'form/advanced',
+            //             component: AdvancedForm
+            //         },
+            //
+            //         {
+            //             label: '向导',
+            //             path: 'form/wizard',
+            //             component: Wizard
+            //         }
+            //     ]
+            // },
+
             {
-                path: 'dashboard',
-                label: 'Dashboard',
-                icon: 'glyphicon glyphicon-signal',
-                component: Dashboard
+              path: "mygroup",
+              label: "我的小组",
+              component: MyGroup
             },
 
             {
-                label: '表单页面',
-                icon: 'glyphicon glyphicon-edit',
-                children: [
-                    {
-                        label: '常规表单',
-                        path: 'form/basic',
-                        component: BasicForm
-                    },
+                path: "usermg",
+                label: "用户管理",
+                component: UserMg
+            },
 
-                    {
-                        label: '复杂表单',
-                        path: 'form/advanced',
-                        component: AdvancedForm
-                    },
+            {
+                path: 'coursemgt',
+                label: '课程管理',
+                component: CourseMgt
+            },
 
-                    {
-                        label: '向导',
-                        path: 'form/wizard',
-                        component: Wizard
-                    }
-                ]
-            }
+
+            {
+                path: "systemmg",
+                label: "系统管理",
+                component: SystemMg
+            },
         ]
     },
 ];
@@ -176,9 +205,9 @@ export default class Admin extends React.Component<AdminProps> {
         return (
             <Layout
                 aside={this.renderAside()}
-                header={this.renderHeader()}
-                folded={store.asideFolded}
-                offScreen={store.offScreen}
+                // header={this.renderHeader()}
+                // folded={store.asideFolded}
+                // offScreen={store.offScreen}
             >
                 <Switch>
                     <Redirect to={`${PATH_PREFIX}/dashboard`} from={`${PATH_PREFIX}/`} exact />

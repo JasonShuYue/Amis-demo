@@ -5,11 +5,19 @@ module.exports = function(req, res) {
     const subpath = (req.originalUrl || req.url).replace(/^\/api\/|\?.*$/g, '');
     const jsonFile = subpath  + '.json';
     const jsFile = subpath + '.js';
+
+
+    console.log('jsFilejsFilejsFilejsFilejsFilejsFile', jsFile)
+    console.log('----------------------------------------------------------------------')
+    console.log('jsonFilejsonFilejsonFilejsonFilejsonFilejsonFile', jsonFile)
+
     if (exist(jsFile)) {
         let file = require.resolve(path.join(DIRNAME, jsFile));
         delete require.cache[file];
         return require(file)(req, res);
-    } if (exist(jsonFile)) {
+    }
+
+    if (exist(jsonFile)) {
         if (req.query.waitSeconds) {
             return setTimeout(function() {
                 res.json(readJson(jsonFile));
